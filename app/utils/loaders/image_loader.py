@@ -89,7 +89,7 @@ async def generate_descriptions_for_images(input_directory, output_directory):
 # Example usage of the async function
 async def main():
     input_directory = FILES_INPUT_DIR
-    output_directory = FILES_OUTPUT_DIR
+    output_directory = FILES_OUTPUT_DIR + '\iamge-descriptions'
     await generate_descriptions_for_images(input_directory, output_directory)
 
 

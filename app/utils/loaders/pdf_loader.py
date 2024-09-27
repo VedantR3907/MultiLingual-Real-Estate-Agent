@@ -102,5 +102,5 @@ async def pdfLoader(input_dir: str, output_dir: str):
 if __name__ == "__main__":
     # Replace with the path to your directory containing PDF files
     input_dir = FILES_INPUT_DIR
-    output_dir = FILES_OUTPUT_DIR
+    output_dir = FILES_OUTPUT_DIR + '\pdf-documents'
     asyncio.run(pdfLoader(input_dir, output_dir))

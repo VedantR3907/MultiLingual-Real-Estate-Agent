@@ -3,7 +3,7 @@ import re
 import os
 import sys
 sys.path.append('../../')
-from utils.constants.constants import FILES_INPUT_DIR, FILES_OUTPUT_DIR
+from utils.constants.constants import FILES_OUTPUT_DIR
 from crawl4ai import AsyncWebCrawler
 
 def clean_content(content):
@@ -57,7 +57,7 @@ async def WebLoader(url):
         file_name = base_name.split('.')[0]  # Remove the extension
 
         # Create the full output path
-        output_path = os.path.join(FILES_OUTPUT_DIR, f"{file_name}.txt")
+        output_path = os.path.join(FILES_OUTPUT_DIR + '\weblink-documents', f"{file_name}.txt")
 
         # Save the cleaned content to a file
         with open(output_path, 'w', encoding='utf8') as f:
@@ -66,5 +66,5 @@ async def WebLoader(url):
         print(f"Cleaned content saved to '{output_path}'")
 
 # Example usage
-url = "https://www.realestateindia.com/property-detail/3bkh-flats-apartments-for-sale-in-bhankrota-jaipur-1800-sq-ft-57-60-lac-1079848.htm"
-asyncio.run(WebLoader(url))
+# url = "https://www.realestateindia.com/property-detail/3bkh-flats-apartments-for-sale-in-bhankrota-jaipur-1800-sq-ft-57-60-lac-1079848.htm"
+# asyncio.run(WebLoader(url))

@@ -3,9 +3,9 @@ import sys
 import json
 import aiofiles
 import asyncio
-sys.path.append('../')
-from constants.constants import DIRECTORY_PATH, PINECONE_NAMESPACE, PINECONE_CLIENT, PINECONE_INDEX_NAME
-from text_and_embeddings.main import Generate_TextAndEmbeddings
+sys.path.append('../../')
+from utils.constants.constants import DIRECTORY_PATH, PINECONE_NAMESPACE, PINECONE_CLIENT, PINECONE_INDEX_NAME
+from utils.text_and_embeddings.weblinks import Generate_TextAndEmbeddings
 from pinecone import ServerlessSpec
 
 index_name = PINECONE_INDEX_NAME
