@@ -8,3 +8,4 @@ google-generativeai
 llama-index
 llama-index-llms-
 llama_index-readers-web
+crawl4ai

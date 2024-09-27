@@ -1,5 +1,9 @@
-import asyncio
+import asyncio  # noqa: F401
 import re
+import os
+import sys
+sys.path.append('../../')
+from utils.constants.constants import FILES_INPUT_DIR, FILES_OUTPUT_DIR
 from crawl4ai import AsyncWebCrawler
 
 def clean_content(content):
@@ -16,7 +20,11 @@ def clean_content(content):
         content = re.sub(pattern, '', content, flags=re.DOTALL)  # Remove all occurrences
 
     # Define keywords to filter out entire lines
-    keywords = ["signup", "sign up", "sign in", "signin","login", "register", "join free", "facebook", "instagram", "twitter", "youtube", "click here", "sign in", "join free", "linkedin", 'whatsapp']
+    keywords = [
+        "signup", "sign up", "sign in", "signin", "login", "register", 
+        "join free", "facebook", "instagram", "twitter", "youtube", 
+        "click here", "join free", "linkedin", "whatsapp"
+    ]
     
     # Split the content into lines and filter out lines containing the keywords
     lines = content.splitlines()
@@ -44,11 +52,19 @@ async def WebLoader(url):
         # Clean the extracted content
         cleaned_content = clean_content(raw_content)
 
+        # Extract the base name from the URL
+        base_name = os.path.basename(url)  # Get the last part of the URL
+        file_name = base_name.split('.')[0]  # Remove the extension
+
+        # Create the full output path
+        output_path = os.path.join(FILES_OUTPUT_DIR, f"{file_name}.txt")
+
         # Save the cleaned content to a file
-        with open('./cleaned_text.txt', 'w', encoding='utf8') as f:
+        with open(output_path, 'w', encoding='utf8') as f:
             f.write(cleaned_content)
 
-        print("Cleaned content saved to './cleaned_text.txt'")
+        print(f"Cleaned content saved to '{output_path}'")
 
-# Run the async main function
-# asyncio.run(WebLoader())
+# Example usage
+url = "https://www.realestateindia.com/property-detail/3bkh-flats-apartments-for-sale-in-bhankrota-jaipur-1800-sq-ft-57-60-lac-1079848.htm"
+asyncio.run(WebLoader(url))
