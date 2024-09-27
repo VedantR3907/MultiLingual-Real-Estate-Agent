@@ -4,15 +4,15 @@ import asyncio
 from insert_records import upsert_data
 from delete_records import delete_records
 sys.path.append('../')
-from constants.constants import PINECONE_NAMESPACE, PINECONE_CLIENT, PINECONE_INDEX_NAME, DIRECTORY_PATH
-from text_and_embeddings.main import Generate_TextAndEmbeddings
+from utils.constants.constants import PINECONE_NAMESPACE_DOCUMENTS, PINECONE_CLIENT, PINECONE_INDEX_NAME, FILES_OUTPUT_DIR
+from utils.text_and_embeddings import Generate_TextAndEmbeddings
 
 index_name = PINECONE_INDEX_NAME
 pc = PINECONE_CLIENT,
 pc = pc[0]
-name_space = PINECONE_NAMESPACE
+name_space = PINECONE_NAMESPACE_DOCUMENTS
 
-json_path = os.path.join(DIRECTORY_PATH, 'extracted_output', 'metadata.json')
+json_path = os.path.join(FILES_OUTPUT_DIR, 'metadata.json')
 
 async def update_records(file_names: list, id: bool = False) -> None:
     """
@@ -27,7 +27,7 @@ async def update_records(file_names: list, id: bool = False) -> None:
     await delete_records(file_names, id=id)
     
     # Upsert updated data
-    await Generate_TextAndEmbeddings(DIRECTORY_PATH, json_path)
+    await Generate_TextAndEmbeddings(FILES_OUTPUT_DIR, json_path, weblinks_or_document='weblinks')
     await upsert_data()
 
 # Example usage

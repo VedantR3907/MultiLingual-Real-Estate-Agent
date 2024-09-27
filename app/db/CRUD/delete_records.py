@@ -1,15 +1,15 @@
 import sys
 import asyncio
-sys.path.append('../')
+sys.path.append('../../')
 from typing import List
-from constants.constants import PINECONE_NAMESPACE, PINECONE_CLIENT, PINECONE_INDEX_NAME
-from text_and_embeddings.textsplitter import filter_filename
+from utils.constants.constants import PINECONE_NAMESPACE_DOCUMENTS, PINECONE_CLIENT, PINECONE_INDEX_NAME
+from utils.text_filtering.weblinks import filter_filename
 
 
 index_name = PINECONE_INDEX_NAME
 pc = PINECONE_CLIENT,
 pc = pc[0]
-namespace = PINECONE_NAMESPACE
+namespace = PINECONE_NAMESPACE_DOCUMENTS
 
 async def delete_records(file_names: List[str], id: bool = False, deleteall: bool = False) -> None:
     """

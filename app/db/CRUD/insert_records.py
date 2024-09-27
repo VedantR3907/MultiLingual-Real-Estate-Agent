@@ -4,18 +4,18 @@ import json
 import aiofiles
 import asyncio
 sys.path.append('../../')
-from utils.constants.constants import DIRECTORY_PATH, PINECONE_NAMESPACE, PINECONE_CLIENT, PINECONE_INDEX_NAME
-from utils.text_and_embeddings.weblinks import Generate_TextAndEmbeddings
+from utils.constants.constants import PINECONE_NAMESPACE_DOCUMENTS, PINECONE_CLIENT, PINECONE_INDEX_NAME, FILES_OUTPUT_DIR
+from utils.text_and_embeddings import Generate_TextAndEmbeddings
 from pinecone import ServerlessSpec
 
 index_name = PINECONE_INDEX_NAME
 pc = PINECONE_CLIENT
-namespace = PINECONE_NAMESPACE
+namespace = PINECONE_NAMESPACE_DOCUMENTS
 
 
-json_path = os.path.join(DIRECTORY_PATH, 'extracted_output', 'metadata.json')
+json_path = os.path.join(FILES_OUTPUT_DIR, 'metadata.json')
 
-async def upsert_data() -> None:
+async def upsert_data(weblinks_or_documents: str) -> None:
     """
     Asynchronously upserts data into a Pinecone index and removes these records from the metadata file.
 
@@ -25,13 +25,13 @@ async def upsert_data() -> None:
         namespace (str): The namespace for the Pinecone index.
     """
 
-    await Generate_TextAndEmbeddings(os.path.join(DIRECTORY_PATH, 'extracted_output'), json_path)
+    await Generate_TextAndEmbeddings(FILES_OUTPUT_DIR, json_path, weblinks_or_documents)
 
     # Initialize Pinecone client
     if index_name not in pc.list_indexes().names():
-        await pc.create_index(
+        pc.create_index(
             name=index_name,
-            dimension=384,
+            dimension=4096,
             metric="cosine",
             spec=ServerlessSpec(
                 cloud='aws',
@@ -85,7 +85,7 @@ async def upsert_data() -> None:
 async def main() -> None:
     
     # Upsert data
-    await upsert_data()
+    await upsert_data(weblinks_or_documents='weblinks')
 
 if __name__ == "__main__":
     asyncio.run(main())
