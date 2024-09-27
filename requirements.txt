@@ -3,3 +3,8 @@ streamlit-extras
 crewai
 crewai-tools
 groq
+pinecone
+google-generativeai
+llama-index
+llama-index-llms-
+llama_index-readers-web
