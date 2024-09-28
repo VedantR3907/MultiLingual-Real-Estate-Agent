@@ -3,7 +3,7 @@ import sys
 import json
 import aiofiles
 import asyncio
-sys.path.append('../../')
+sys.path.append('../')
 from utils.constants.constants import EMBEDDING_MODEL, FILES_OUTPUT_DIR
 
 # Adding the directory to the system path
@@ -39,7 +39,7 @@ async def generate_embeddings(metadata_path: str) -> None:
 # Example usage
 async def main():    
     # Define the path to the metadata JSON file relative to the current file's directory
-    metadata_json_path = os.path.join(FILES_OUTPUT_DIR + '\db', 'metadata.json')
+    metadata_json_path = os.path.join(FILES_OUTPUT_DIR, 'metadata.json')
     
     # Generate embeddings and update the metadata
     await generate_embeddings(metadata_json_path)

@@ -4,10 +4,11 @@ import json
 import aiofiles
 import asyncio
 import sys
-sys.path.append('../../')
+sys.path.append('../')
 from typing import Dict, Any
 from datetime import datetime
 from langchain.text_splitter import MarkdownTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from utils.constants.constants import FILES_OUTPUT_DIR
 
 def filter_filename(filename: str, id: bool) -> str:
@@ -77,7 +78,7 @@ async def ReadFiles(folder_path: str) -> Dict[str, Dict[str, str]]:
             }
     return file_contents
 
-async def TextSplitter(file_contents: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, str]]:
+async def TextSplitter(file_contents: Dict[str, Dict[str, str]], file_type: str) -> Dict[str, Dict[str, str]]:
     """
     Splits the text content of each file into smaller chunks using MarkdownTextSplitter.
 
@@ -101,12 +102,15 @@ async def TextSplitter(file_contents: Dict[str, Dict[str, str]]) -> Dict[str, Di
     """
     metadata = {}
     # Initialize the MarkdownTextSplitter with the desired chunk size and overlap
-    markdown_splitter = MarkdownTextSplitter(chunk_size=1500, chunk_overlap=100)
+    if file_type == 'weblinks':
+        splitter = MarkdownTextSplitter(chunk_size=1500, chunk_overlap=150)
+    else:
+        splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=150)
     
     for file_name, file_metadata in file_contents.items():
         content = file_metadata['content']
         # Create documents using the MarkdownTextSplitter
-        docs = markdown_splitter.create_documents([content])
+        docs = splitter.create_documents([content])
         
         for i, doc in enumerate(docs):
             chunk_id = f"{file_name}#chunk_{i}"
@@ -150,7 +154,7 @@ async def WriteMetadataToJson(metadata: Dict[str, Dict[str, Any]], output_path: 
     async with aiofiles.open(output_path, 'w', encoding='utf-8') as json_file:
         await json_file.write(json.dumps(reformatted_data, ensure_ascii=False, indent=4))
 
-async def process_metadata(directory_path: str) -> None:
+async def process_metadata(directory_path: str, file_type: str) -> None:
     """
     Processes files in the specified directory to create metadata and write it to a JSON file.
 
@@ -168,7 +172,7 @@ async def process_metadata(directory_path: str) -> None:
         file_contents = await ReadFiles(extracted_output_path)
 
         # Split the text and create metadata using MarkdownTextSplitter
-        metadata = await TextSplitter(file_contents)
+        metadata = await TextSplitter(file_contents, file_type)
 
         # Define the path for the JSON output file
         json_output_path = os.path.join(os.path.dirname(extracted_output_path), 'metadata.json')
@@ -182,5 +186,5 @@ async def process_metadata(directory_path: str) -> None:
     
 if __name__ == "__main__":
     # Run the async process_metadata function
-    extracted_output_path = os.path.join(FILES_OUTPUT_DIR, 'weblink-documents')
-    asyncio.run(process_metadata(extracted_output_path))
+    extracted_output_path = os.path.join(FILES_OUTPUT_DIR, 'pdf-documents')
+    asyncio.run(process_metadata(extracted_output_path, 'psd'))

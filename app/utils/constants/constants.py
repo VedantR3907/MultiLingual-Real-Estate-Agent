@@ -3,14 +3,15 @@ from dotenv import load_dotenv
 from pinecone.grpc import PineconeGRPC as Pinecone
 from llama_index.llms.groq import Groq
 from langchain_community.embeddings.ollama import OllamaEmbeddings
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 
 load_dotenv()
 
 PINECONE_CLIENT = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 PINECONE_INDEX_NAME = 'realestatebot'
 PINECONE_NAMESPACE_DOCUMENTS = 'docs-weblinks'
-GROQ_CLIENT_LLAMAINDEX = Groq(model="llllama3-70b-8192", api_key=os.environ.get("GROQ_API_KEY"),)
-EMBEDDING_MODEL = OllamaEmbeddings(model='llama3.1')
+GROQ_CLIENT_LLAMAINDEX = Groq(model="llama3-70b-8192", api_key=os.environ.get("GROQ_API_KEY"),)
+EMBEDDING_MODEL = FastEmbedEmbeddings()
 
 SIMILARITY_TOP_K = 10
 SIMILARITY_CUTOFF = 0.0
