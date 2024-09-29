@@ -8,12 +8,7 @@ from utils.constants.constants import FILES_OUTPUT_DIR
 
 async def Generate_TextAndEmbeddings(directory_path: str, json_path: str, weblinks_or_document: str) -> None:
     # Process metadata
-    if weblinks_or_document == 'weblinks':
-        await process_metadata(directory_path, weblinks_or_document)
-        directory_path = os.path.join(FILES_OUTPUT_DIR, 'weblink-documents')
-    else:
-        await process_metadata(directory_path, weblinks_or_document)
-        directory_path = os.path.join(FILES_OUTPUT_DIR, 'pdf-documents')
+    await process_metadata(directory_path, weblinks_or_document)
 
     # Define the path to the metadata JSON file
     metadata_json_path = json_path
@@ -25,8 +20,7 @@ async def Generate_TextAndEmbeddings(directory_path: str, json_path: str, weblin
 
 if __name__ == "__main__":
     # Define directory and JSON paths
-    directory_path = os.path.join(FILES_OUTPUT_DIR)
     json_path = os.path.join(FILES_OUTPUT_DIR, 'metadata.json')
 
     # Run the async function
-    asyncio.run(Generate_TextAndEmbeddings(directory_path, json_path, 'pdf-documents'))
+    asyncio.run(Generate_TextAndEmbeddings(FILES_OUTPUT_DIR, json_path, 'pdf'))

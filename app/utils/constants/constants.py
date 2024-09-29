@@ -2,18 +2,22 @@ import os
 from dotenv import load_dotenv
 from pinecone.grpc import PineconeGRPC as Pinecone
 from llama_index.llms.groq import Groq
-from langchain_community.embeddings.ollama import OllamaEmbeddings
-from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
+from langchain.embeddings import HuggingFaceBgeEmbeddings
 
 load_dotenv()
 
 PINECONE_CLIENT = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 PINECONE_INDEX_NAME = 'realestatebot'
 PINECONE_NAMESPACE_DOCUMENTS = 'docs-weblinks'
-GROQ_CLIENT_LLAMAINDEX = Groq(model="llama3-70b-8192", api_key=os.environ.get("GROQ_API_KEY"),)
-EMBEDDING_MODEL = FastEmbedEmbeddings()
+GROQ_CLIENT_LLAMAINDEX = Groq(model="llama-3.1-70b-versatile", api_key=os.environ.get("GROQ_API_KEY"),)
 
-SIMILARITY_TOP_K = 10
+model_name = "BAAI/bge-small-en"
+model_kwargs = {"device": "cuda"}
+EMBEDDING_MODEL = HuggingFaceBgeEmbeddings(
+    model_name=model_name, model_kwargs=model_kwargs\
+)
+
+SIMILARITY_TOP_K = 15
 SIMILARITY_CUTOFF = 0.0
 
 current_dir = os.path.dirname(os.path.abspath(__file__))

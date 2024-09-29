@@ -31,7 +31,7 @@ async def upsert_data(weblinks_or_documents: str) -> None:
     if index_name not in pc.list_indexes().names():
         pc.create_index(
             name=index_name,
-            dimension=4096,
+            dimension=384,
             metric="cosine",
             spec=ServerlessSpec(
                 cloud='aws',
@@ -85,7 +85,7 @@ async def upsert_data(weblinks_or_documents: str) -> None:
 async def main() -> None:
     
     # Upsert data
-    await upsert_data(weblinks_or_documents='weblinks')
+    await upsert_data(weblinks_or_documents='pdf')
 
 if __name__ == "__main__":
     asyncio.run(main())

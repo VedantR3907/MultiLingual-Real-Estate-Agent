@@ -66,5 +66,5 @@ async def WebLoader(url):
         print(f"Cleaned content saved to '{output_path}'")
 
 # Example usage
-# url = "https://www.realestateindia.com/property-detail/3bkh-flats-apartments-for-sale-in-bhankrota-jaipur-1800-sq-ft-57-60-lac-1079848.htm"
-# asyncio.run(WebLoader(url))
+url = "https://www.realestateindia.com/property-detail/3bkh-flats-apartments-for-sale-in-bhankrota-jaipur-1800-sq-ft-57-60-lac-1079848.htm"
+asyncio.run(WebLoader(url))

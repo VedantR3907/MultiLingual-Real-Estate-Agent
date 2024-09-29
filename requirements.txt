@@ -9,3 +9,5 @@ llama-index
 llama-index-llms-
 llama_index-readers-web
 crawl4ai
+llama-index-vector-stores-pinecone
+llama-index-embeddings-huggingface

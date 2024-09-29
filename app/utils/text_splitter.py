@@ -166,16 +166,20 @@ async def process_metadata(directory_path: str, file_type: str) -> None:
 
     # Ensure that the path exists and is a directory
     if os.path.isdir(extracted_output_path):
-        print(f"Processing files in the directory: {extracted_output_path}")
+        if file_type == 'weblinks':
+            documents_dir = os.path.join(extracted_output_path, 'weblink-documents')
+        else:
+            documents_dir = os.path.join(extracted_output_path, 'pdf-documents')
+        print(f"Processing files in the directory: {documents_dir}")
         
         # Read all files in the extracted_output folder
-        file_contents = await ReadFiles(extracted_output_path)
+        file_contents = await ReadFiles(documents_dir)
 
         # Split the text and create metadata using MarkdownTextSplitter
         metadata = await TextSplitter(file_contents, file_type)
 
         # Define the path for the JSON output file
-        json_output_path = os.path.join(os.path.dirname(extracted_output_path), 'metadata.json')
+        json_output_path = os.path.join(extracted_output_path, 'metadata.json')
 
         # Write the metadata to the JSON file
         await WriteMetadataToJson(metadata, json_output_path)
@@ -186,5 +190,4 @@ async def process_metadata(directory_path: str, file_type: str) -> None:
     
 if __name__ == "__main__":
     # Run the async process_metadata function
-    extracted_output_path = os.path.join(FILES_OUTPUT_DIR, 'pdf-documents')
-    asyncio.run(process_metadata(extracted_output_path, 'psd'))
+    asyncio.run(process_metadata(FILES_OUTPUT_DIR, 'weblinks'))
