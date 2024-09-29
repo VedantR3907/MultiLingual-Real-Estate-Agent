@@ -1,0 +1,72 @@
+[
+    {
+        "user_type": "buyer",
+        "information": [
+            {
+                "name": "John Doe",
+                "property_type": "Apartment",
+                "budget": "$300,000",
+                "preferred_location": "Downtown"
+            },
+            {
+                "name": "Emily Smith",
+                "property_type": "Condo",
+                "budget": "$500,000",
+                "preferred_location": "Uptown"
+            }
+        ]
+    },
+    {
+        "user_type": "seller",
+        "information": [
+            {
+                "name": "Jane Williams",
+                "property_type": "Villa",
+                "location": "Beverly Hills",
+                "selling_price": "$2,000,000"
+            },
+            {
+                "name": "Michael Johnson",
+                "property_type": "House",
+                "location": "Suburban Area",
+                "selling_price": "$750,000"
+            }
+        ]
+    },
+    {
+        "user_type": "tenant",
+        "information": [
+            {
+                "name": "Alice Johnson",
+                "property_type": "House",
+                "budget": "$2,500/month",
+                "move_in_date": "2024-10-01"
+            },
+            {
+                "name": "David Green",
+                "property_type": "Apartment",
+                "budget": "$1,800/month",
+                "move_in_date": "2024-09-15"
+            }
+        ]
+    },
+    {
+        "user_type": "landlord_for_rent",
+        "information": [
+            {
+                "name": "Robert Brown",
+                "property_type": "Villa",
+                "availability": "Immediate",
+                "rental_status": "Vacant",
+                "furnishing_details": "Fully Furnished"
+            },
+            {
+                "name": "Sara White",
+                "property_type": "Apartment",
+                "availability": "Next month",
+                "rental_status": "Occupied",
+                "furnishing_details": "Partially Furnished"
+            }
+        ]
+    }
+]
