@@ -9,7 +9,7 @@ load_dotenv()
 PINECONE_CLIENT = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 PINECONE_INDEX_NAME = 'realestatebot'
 PINECONE_NAMESPACE_DOCUMENTS = 'docs-weblinks'
-GROQ_CLIENT_LLAMAINDEX = Groq(model="llama-3.1-70b-versatile", api_key=os.environ.get("GROQ_API_KEY"),)
+GROQ_CLIENT_LLAMAINDEX = Groq(model="llama3-groq-70b-8192-tool-use-preview", api_key=os.environ.get("GROQ_API_KEY"),)
 
 model_name = "BAAI/bge-small-en"
 model_kwargs = {"device": "cuda"}

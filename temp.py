@@ -1,8 +1,7 @@
-import os
+
 from crewai import Agent, LLM, Crew, Task
 from crewai_tools import TXTSearchTool
 from dotenv import load_dotenv
-from sqlalchemy import desc
 
 load_dotenv()
 

@@ -13,6 +13,18 @@
                 "property_type": "Condo",
                 "budget": "$500,000",
                 "preferred_location": "Uptown"
+            },
+            {
+                "name": "Vedant",
+                "property_type": "Villa",
+                "budget": "$200000",
+                "preferred_location": "Beverly hills"
+            },
+            {
+                "name": "Rahul",
+                "property_type": "dssds",
+                "budget": "500000",
+                "preferred_location": "asdasdasd"
             }
         ]
     },
