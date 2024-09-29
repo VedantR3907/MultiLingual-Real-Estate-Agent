@@ -1,5 +1,6 @@
 import sys
 from typing import List
+import asyncio
 from dotenv import load_dotenv
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.pinecone import PineconeVectorStore
@@ -49,5 +50,9 @@ async def llamaindex_chatbot(query: str, chat_history: List):
     
     chat_response = await chatengine.achat(query)
 
+    print(chat_response)
+
     return str(chat_response)
 
+if __name__ == "__main__":
+    asyncio.run(llamaindex_chatbot("Are there any properties between 50 to 60 lakhs", []))
