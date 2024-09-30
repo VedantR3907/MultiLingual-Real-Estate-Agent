@@ -61,6 +61,7 @@ def chat_with_llm(user_info, user_prompt):
                 f"{user_info_str}\n"
                 "And below is the information the user might be interested in: \n"
                 f"{json.dumps(context_json, indent=4)}"
+                "User will write query with the language he/she wants the output in for example user will write its query and at the end they will write LANGAUGE: German. so you must respond to user in that particular language."
             )
         ),
         ChatMessage(role="user", content=user_prompt),
@@ -68,16 +69,3 @@ def chat_with_llm(user_info, user_prompt):
 
     resp = llm.chat(messages)
     return resp.message.content
-
-# Example Usage
-print(chat_with_llm({
-        "user_type": "buyer",
-        "information": [
-            {
-                "name": "Vedant",
-                "property_type": "Villa",
-                "budget": "$200000",
-                "preferred_location": "Beverly Hills"
-            }
-        ]
-    }, "I want to buy a property"))

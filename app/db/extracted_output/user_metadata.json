@@ -25,6 +25,30 @@
                 "property_type": "dssds",
                 "budget": "500000",
                 "preferred_location": "asdasdasd"
+            },
+            {
+                "name": "Vedant",
+                "property_type": "Villa",
+                "budget_in_dollar": 150000.0,
+                "preferred_location": "New york"
+            },
+            {
+                "name": "sdasd",
+                "property_type": "sdfsdf",
+                "budget_in_dollar": 34343.0,
+                "preferred_location": "rerrwer"
+            },
+            {
+                "name": "sdfsd",
+                "property_type": "fsdfsdf",
+                "budget_in_dollar": 0.0,
+                "preferred_location": "sdfsdfsd"
+            },
+            {
+                "name": "erwe",
+                "property_type": "dsfsdf",
+                "budget_in_dollar": 0.0,
+                "preferred_location": "sdfsdf"
             }
         ]
     },

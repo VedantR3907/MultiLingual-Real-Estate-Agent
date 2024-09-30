@@ -9,6 +9,9 @@ from utils.query_without_database import chat_with_llm
 from utils.query_agents import crewai_agent_chat
 from utils.chat_history.image_chat_history import save_uploaded_image
 from utils.query_image import chat_image
+from utils.languges.detect_language import detect_language
+from utils.languges.translate_langauge import translate_language
+
 def input_user_information():
     """Display input fields for user information using an expander."""
     # Initialize expander visibility state
@@ -133,6 +136,12 @@ def bottom_container():
             return "", "Normal", None  # Return default values if no input
 
 async def main():
+    st.sidebar.header("Settings")  # Add a header to the sidebar
+
+    # Language selection
+    language = st.sidebar.selectbox("Select Language:", ["Default" , "English", "French", "German"])
+    st.session_state.selected_language = language  # Store the selected language in session state
+
     st.header("🏢 REAL ESTATE CHATBOT")
 
     # Check if user info is already present in session state
@@ -150,15 +159,32 @@ async def main():
     if user_info is not None:
         user_prompt, chat_mode, image_file = bottom_container()  # Get user input, chat mode, and image file
         if user_prompt is not None and user_prompt != '':
+            print("GOING IN")
             with st.container(border=True, height=500):
-                chat_history = await read_chat_history()  # Read chat history asynchronously
+                chat_history = await read_chat_history(limit=5)  # Read chat history asynchronously
                 format_history = await format_chat_history_llamaindex(chat_history)
 
-                if chat_mode != 'Chat with Image':
-                    display_chat_history(chat_history)
+                display_chat_history(chat_history)
 
                 with st.chat_message("HUMAN", avatar='./assets/user.png'):
                     st.markdown(user_prompt)
+
+                user_prompt_language = detect_language(user_prompt)
+                if user_prompt_language in ['de', 'fr']:
+                    user_prompt = translate_language(user_prompt_language, user_prompt)
+                elif user_prompt_language != 'en':
+                    st.warning("Language cannot be detect")
+                    return
+
+                if language != 'Default':
+                        user_prompt += '\n LANGUAGE: ' + language
+                else:
+                    if user_prompt_language == 'de':
+                        user_prompt += '\n LANGUAGE: ' + 'German'
+                    elif user_prompt_language == 'fr':
+                        user_prompt += '\n LANGUAGE: ' + 'French'
+                    else:
+                        user_prompt += '\n LANGUAGE: English'
 
                 if chat_mode == "Chat with Documents":
                     answer = await llamaindex_chatbot(user_prompt, format_history)  # Pass the toggle state
@@ -173,6 +199,7 @@ async def main():
                         image_path = save_uploaded_image(image_file)
                         answer = chat_image(image_path, user_prompt)
                     else:
+                        # Display a warning instead of returning it as an answer
                         st.warning("Please upload an image first.")
                         return  # Exit early to avoid further processing
 

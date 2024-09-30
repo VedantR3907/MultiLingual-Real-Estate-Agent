@@ -1,38 +1,38 @@
 [
     {
-        "user": "What is it villa or a flat",
-        "assistant": "The image shows a suburban home. It's likely a single-family home, not a flat. \n"
+        "user": "Are there poperties in jaipur\n LANGUAGE: English",
+        "assistant": "Yes, there are properties available in Jaipur. For example, there is a 3 BHK apartment available in Bhankrota, Jaipur, with 3 bathrooms, 3 balconies, and a size of 1800 sq ft. The price is \u20b9 57.60 Lac."
     },
     {
-        "user": "is there a balcony",
-        "assistant": "The image does not show a balcony."
+        "user": "Are there properties in Jaipur?\n LANGUAGE: German",
+        "assistant": "Ja, es gibt Immobilien in Jaipur. Zum Beispiel gibt es eine 3-Zimmer-Wohnung in Bhankrota, Jaipur, mit 3 B\u00e4dern, 3 Balkonen und einer Gr\u00f6\u00dfe von 1800 Quadratfu\u00df. Der Preis betr\u00e4gt \u20b9 57,60 Lac."
     },
     {
-        "user": "What is the price of this accroding to you",
-        "assistant": "I'm sorry, I can't estimate the price of a house based on a photo. There are too many factors that go into determining the value of a property, including:\n\n* Location\n* Square footage\n* Number of bedrooms and bathrooms\n* Age of the house\n* Condition of the house\n* Lot size\n* Amenities\n* Market conditions \n\nTo get a realistic estimate of the price, you would need to contact a real estate agent in the area. \n"
+        "user": "what is in document\n LANGUAGE: English",
+        "assistant": "The document contains information about various aspects of property transactions and documentation, including the definition of a property, types of property transactions, gift by way of will, relinquishment deed, and applicable laws governing property matters in India."
     },
     {
-        "user": "I want a villa",
-        "assistant": "Based on your preferences, I found a villa for sale in Beverly Hills listed at $2,000,000. Would you like more details on this property?"
+        "user": "any properties in jaipur\n LANGUAGE: English",
+        "assistant": "Yes, there are properties available in Jaipur. Specifically, there are properties for sale and rent in localities such as Patrakar Colony, New Sanganer Road, Narayan Vihar, Sanganer Road, Gandhi Path, Chitrakoot, and Shyam Nagar."
     },
     {
-        "user": "Flats in jaipur",
-        "assistant": "I found a 3 BHK apartment for sale in Bhankrota, Jaipur. It has 3 bathrooms, 3 balconies, and is 1800 sq ft. The price is \u20b9 57.60 Lac. Would you like more details on this property?"
+        "user": "Are there properties in Jaipur?\n LANGUAGE: German",
+        "assistant": "Ja, es gibt Immobilien in Jaipur. Insbesondere gibt es Immobilien zum Verkauf und zur Miete in Stadtteilen wie Patrakar Colony, New Sanganer Road, Narayan Vihar, Sanganer Road, Gandhi Path, Chitrakoot und Shyam Nagar."
     },
     {
-        "user": "Yes contact details",
-        "assistant": "The contact details for the 3 BHK apartment in Bhankrota, Jaipur are as follows: +91-86969xxxxx. You can visit their website at http://www.shriradheyhomes.com for more information."
+        "user": "Are there any properties in jaipur\n LANGUAGE: German",
+        "assistant": "Ja, es gibt Immobilien in Jaipur. Zum Beispiel gibt es 2038 Immobilien zum Verkauf in Ajmer Road, Jaipur. Es gibt auch Immobilien in Bhankrota, Jaipur, wie zum Beispiel eine 3-Zimmer-Wohnung mit 3 B\u00e4dern und 3 Balkonen."
     },
     {
-        "user": "Hi",
-        "assistant": "Please upload an image."
+        "user": "Are there properties in Jaipur?\n LANGUAGE: German",
+        "assistant": "Ich kann dir leider nicht sagen, ob es Immobilien in Jaipur gibt. Ich bin ein KI-Sprachmodell und kann keine Informationen \u00fcber den Immobilienmarkt liefern."
     },
     {
-        "user": "Hi",
-        "assistant": "Please upload an image."
+        "user": "What's in the picture?\n LANGUAGE: German",
+        "assistant": "Das Bild zeigt ein Haus mit einer Garage und einem Garten. Das Haus ist zweist\u00f6ckig und hat einen hellen Dachboden. Die Garage ist mit einem elektrischen Garagentor ausgestattet. Der Garten ist mit Rasen und B\u00e4umen bepflanzt. Das Haus ist in einem Wohngebiet mit anderen H\u00e4usern in der N\u00e4he gelegen. Der Himmel ist rosa und blau, was darauf hindeutet, dass es kurz vor Sonnenuntergang ist.\n"
     },
     {
-        "user": "Whats in the image",
-        "assistant": "This is a photo of a house with a blue door and a double garage door. The house is painted white and has a dark roof. There are two trees in front of the house and a field behind it. The house looks to be in a suburban neighborhood and is lit up by warm lights. The sky is a soft pink and blue color with wispy clouds."
+        "user": "What is the square feet of the house\n LANGUAGE: French",
+        "assistant": "Je suis d\u00e9sol\u00e9, mais je ne peux pas d\u00e9terminer la superficie de la maison. La photo ne fournit pas assez d\u2019informations. \n"
     }
 ]

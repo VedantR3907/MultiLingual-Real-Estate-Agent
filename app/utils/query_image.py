@@ -15,7 +15,7 @@ def chat_image(image_path: str, query: str):
     myfile = genai.upload_file(image_path)
 
     result = model.generate_content(
-        [myfile, "\n\n",f"The user query is {query} and the chat history between user and model is {messages}"]
+        [myfile, "\n\n",f"The user query is {query} and the chat history between user and model is {messages} in the language user wants, user will write the langauge they want response in and you must respond in that particular langauge."]
     )
 
 
