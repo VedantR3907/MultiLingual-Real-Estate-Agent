@@ -4,10 +4,11 @@
 The chatbot is integrated with normal conversation from FAQ's, chatting with documents without Crewai agents, chatting with documents with crewai agents, Chatting with image with autodetection and custom language selection from English, French and German.
 
 
-First git pull the following branch
-
-Image-chatting-integration
-
+### First git pull the following branch
+```
+https://github.com/VedantR3907/Real_Estate_Chatbot/tree/main
+BRANCH : - Image-chatting-integration
+````
 
 ### Installing requriements.txt
 ```
@@ -99,9 +100,7 @@ ___________________________________________________________________________
 ## Project Details
 
 ```
-You can change the following from utils/constants)
-
-
+you can change the following from utils/constants)
 1. LLM model : - GROQ llama-3.1-70b-versatile (you can change model from utils/constants)
 
 2. VLM model :  Gemini-1.5-flash
