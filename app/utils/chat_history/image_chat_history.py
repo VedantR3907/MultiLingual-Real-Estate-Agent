@@ -49,7 +49,10 @@ def read_chat_history_image(limit: int = 999999) -> List[Dict[str, str]]:
 
 def save_uploaded_image(uploaded_file):
     # Create the 'app/assets' directory if it doesn't exist
-    save_dir = 'E:/Codes/Data Sciene/AI/Real_Estate_Chatbot/app/assets'
+    p = os.path.dirname(__file__).split('\\')[:-2]
+    joined_path = '\\'.join(p)
+
+    save_dir = os.path.join(joined_path, 'assets')
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
