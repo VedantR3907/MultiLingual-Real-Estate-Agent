@@ -48,7 +48,9 @@ async def llamaindex_chatbot(query: str):
             content=(
                 """ You are an assistant for answering real estate-related queries. Use the following pieces of retrieved information to answer questions about properties, such as available listings, property details (e.g., number of BHKs, facilities), and other relevant information. Provide clear and direct answers as if you're responding to a user's inquiry, without mentioning any documents or contexts. If you don't know the answer, just say that you don't know.
 
-    You should always answer using the provided context and only the context from the document."""
+    You should always answer using the provided context and only the context from the document.
+    
+    User will write query with the language he/she wants the output in for example user will write its query and at the end they will write LANGAUGE: German. so you must respond to user in that particular language."""
             ),
         ),
         ChatMessage(
@@ -58,7 +60,7 @@ async def llamaindex_chatbot(query: str):
                 "---------------------\n"
                 "{context_str}\n"
                 "---------------------\n"
-                "Given the context information and not prior knowledge, "
+                "Given the context information and not prior knowledge,"
                 "answer the query.\n"
                 "Query: {query_str}\n"
                 "Answer: "
@@ -85,13 +87,13 @@ async def crewai_agent_chat(query):
     query_tool = LlamaIndexTool.from_query_engine(
         query_engine,
         name="Real Estate Bot",
-        description="This tool is a real estate chatbot that helps answer property-related queries, including available listings, BHK details, facilities, and other relevant real estate information using context from the retrieved documents."
+        description="This tool is a real estate chatbot that helps answer property-related queries, including available listings, BHK details, facilities, and other relevant real estate information using context from the retrieved documents. in the any language what user wants"
     )
 
     # Define the Real Estate Researcher agent
     real_estate_agent = Agent(
-        role="Real Estate Information Provider",
-        goal="Provide tailored responses and retrieve relevant information from the document according to the user's query: {input}",
+        role="Real Estate Information Provider with multi language speciality",
+        goal="Provide tailored responses and retrieve relevant information from the document according to the user's query in any language user wants: {input}",
         backstory="""An expert in finding and filtering relevant information from the provided documents or databases.
         Your goal is to give concise and accurate information based on the user's query.""",
         llm=llm,
@@ -102,17 +104,14 @@ async def crewai_agent_chat(query):
     # Define the task for the agent
     real_estate_task = Task(
         agent=real_estate_agent,
-        description="""Your task is to filter and retrieve the most relevant information from the document based on the user's query: {input}.
+        description="""Your task is to filter and retrieve the most relevant information from the document based on the user's query, the response should be in the langauge user wants: {input}.
         Never provide any information outside of the document. If you don't know the answer, simply say that you don't know. Never give incorrect information.""",
-        expected_output="The output should be a single paragraph.",
-        output_file='./output_crew_ai.txt'
+        expected_output="The output should be a detailed information perfeclty extracted from the context without leaving any, the output should be in a language user wants.",
     )
 
     # Create the Crew instance
     my_crew = Crew(agents=[real_estate_agent], tasks=[real_estate_task])
 
     crew = my_crew.kickoff(inputs={"input": query})
-
-    print(crew.raw)
 
     return crew.raw

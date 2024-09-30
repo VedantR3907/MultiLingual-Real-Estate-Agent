@@ -1,12 +1,16 @@
 import asyncio
 import streamlit as st
 from streamlit_extras.bottom_container import bottom
-from utils.query_database import llamaindex_chatbot
+from utils.query_database.query_database import llamaindex_chatbot
 from utils.chat_history.chat_history import display_chat_history, read_chat_history, format_chat_history_llamaindex
 from utils.chat_history.save_data_to_json import save_to_json
 from utils.user_data.generate_json import save_user_metadata
-from utils.query_without_database import chat_with_llm
-from utils.query_agents import crewai_agent_chat
+from utils.query_database.query_without_database import chat_with_llm
+from utils.query_database.query_agents import crewai_agent_chat
+from utils.chat_history.image_chat_history import save_uploaded_image
+from utils.query_database.query_image import chat_image
+from utils.languges.detect_language import detect_language
+from utils.languges.translate_langauge import translate_language
 
 def input_user_information():
     """Display input fields for user information using an expander."""
@@ -117,17 +121,27 @@ def bottom_container():
             st.write("")
             st.write("")
             user_prompt = st.chat_input("Write a question")
+            image_file = None  # Initialize image_file as None
+            if st.session_state.get('chat_mode', 'Normal') == "Chat with Image":
+                image_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
+        
         with col2:
             # Use an empty container to eliminate spacing before the selectbox
             with st.empty():
-                chat_mode = st.selectbox("Mode:", ["Normal", "Chat with Documents", "Chat with Agent"], key="chat_mode")
+                chat_mode = st.selectbox("Mode:", ["Normal", "Chat with Documents", "Chat with Agent", "Chat with Image"], key="chat_mode")
         
-        if user_prompt:
-            return user_prompt, chat_mode  # Return user prompt and chat mode
+        if user_prompt or image_file is not None:  # Check if there's user input or an image uploaded
+            return user_prompt, chat_mode, image_file  # Return user prompt, chat mode, and image file
         else:
-            return "", "Normal"  # Return default values if no input
+            return "", "Normal", None  # Return default values if no input
 
 async def main():
+    st.sidebar.header("Settings")  # Add a header to the sidebar
+
+    # Language selection
+    language = st.sidebar.selectbox("Select Language:", ["Default" , "English", "French", "German"])
+    st.session_state.selected_language = language  # Store the selected language in session state
+
     st.header("🏢 REAL ESTATE CHATBOT")
 
     # Check if user info is already present in session state
@@ -143,26 +157,53 @@ async def main():
         user_info = st.session_state.user_info
 
     if user_info is not None:
-        user_prompt, chat_mode = bottom_container()  # Get user input and chat mode
+        user_prompt, chat_mode, image_file = bottom_container()  # Get user input, chat mode, and image file
         if user_prompt is not None and user_prompt != '':
             with st.container(border=True, height=500):
-                chat_history = await read_chat_history()  # Read chat history asynchronously
+                chat_history = await read_chat_history(limit=5)  # Read chat history asynchronously
                 format_history = await format_chat_history_llamaindex(chat_history)
+
                 display_chat_history(chat_history)
+
                 with st.chat_message("HUMAN", avatar='./assets/user.png'):
                     st.markdown(user_prompt)
+
+                user_prompt_language = detect_language(user_prompt)
+                if user_prompt_language in ['de', 'fr']:
+                    user_prompt = translate_language(user_prompt_language, user_prompt)
+
+                if language != 'Default':
+                        user_prompt += '\n LANGUAGE: ' + language
+                else:
+                    if user_prompt_language == 'de':
+                        user_prompt += '\n LANGUAGE: ' + 'German'
+                    elif user_prompt_language == 'fr':
+                        user_prompt += '\n LANGUAGE: ' + 'French'
+                    else:
+                        user_prompt += '\n LANGUAGE: English'
 
                 if chat_mode == "Chat with Documents":
                     answer = await llamaindex_chatbot(user_prompt, format_history)  # Pass the toggle state
                 elif chat_mode == "Chat with Agent":
                     answer = await crewai_agent_chat(user_prompt)  # Chat with the agent
-                else:  # Normal chat
+                elif chat_mode == 'Normal':  # Normal chat
                     answer = chat_with_llm(st.session_state.user_info, user_prompt)
+                elif chat_mode == "Chat with Image":
+                    # Handle image processing here
+                    if image_file is not None:
+                        # Save the uploaded image
+                        image_path = save_uploaded_image(image_file)
+                        answer = chat_image(image_path, user_prompt)
+                    else:
+                        # Display a warning instead of returning it as an answer
+                        st.warning("Please upload an image first.")
+                        return  # Exit early to avoid further processing
 
                 with st.chat_message("AI", avatar='./assets/meta.png'):
                     st.write(answer)
 
                 save_to_json(user_prompt, answer)
+
 # Run the async main function
 if __name__ == "__main__":
     asyncio.run(main())

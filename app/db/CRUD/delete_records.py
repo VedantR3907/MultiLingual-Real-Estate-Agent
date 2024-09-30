@@ -3,7 +3,7 @@ import asyncio
 sys.path.append('../../')
 from typing import List
 from utils.constants.constants import PINECONE_NAMESPACE_DOCUMENTS, PINECONE_CLIENT, PINECONE_INDEX_NAME
-from app.utils.text_splitter import filter_filename
+from utils.text_splitter import filter_filename
 
 
 index_name = PINECONE_INDEX_NAME
@@ -50,7 +50,7 @@ async def delete_records(file_names: List[str], id: bool = False, deleteall: boo
 if __name__ == "__main__":
     async def main():
         # Define paths and keys
-        file_names_to_delete = ['Vedant Rajpurohit Resume new.txt']
+        file_names_to_delete = ['IMPORTANT LEGAL PROPERTY DOCUMENTS.txt']
         
         # Delete records for the specified files
         await delete_records(file_names_to_delete, id=False, deleteall=False)

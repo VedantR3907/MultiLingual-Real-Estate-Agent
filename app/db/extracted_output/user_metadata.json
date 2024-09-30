@@ -25,6 +25,12 @@
                 "property_type": "dssds",
                 "budget": "500000",
                 "preferred_location": "asdasdasd"
+            },
+            {
+                "name": "Vedant",
+                "property_type": "Villa",
+                "budget_in_dollar": 150000.0,
+                "preferred_location": "New york"
             }
         ]
     },
