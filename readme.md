@@ -17,6 +17,12 @@ pip install requirements.txt
 
 After this you might want to install some packages manually:
 
+#### NOTE: - You need CUDA to create embeddings if you already have installed check using the below piece of code:
+```
+import torch
+print(torch.cuda.is_available())
+```
+
 In the below installation the cuda version depends upon your graphics card, for me it was 11.8
 https://pytorch.org/get-started/locally/
 ```
