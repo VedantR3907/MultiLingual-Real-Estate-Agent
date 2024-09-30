@@ -46,5 +46,13 @@
     {
         "role": "model",
         "parts": "Je suis d\u00e9sol\u00e9, mais je ne peux pas d\u00e9terminer la superficie de la maison. La photo ne fournit pas assez d\u2019informations. \n"
+    },
+    {
+        "role": "user",
+        "parts": "Is there a garage\n LANGUAGE: German"
+    },
+    {
+        "role": "model",
+        "parts": "Ja, es gibt eine Garage. \n"
     }
 ]

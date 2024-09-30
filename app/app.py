@@ -1,14 +1,14 @@
 import asyncio
 import streamlit as st
 from streamlit_extras.bottom_container import bottom
-from utils.query_database import llamaindex_chatbot
+from utils.query_database.query_database import llamaindex_chatbot
 from utils.chat_history.chat_history import display_chat_history, read_chat_history, format_chat_history_llamaindex
 from utils.chat_history.save_data_to_json import save_to_json
 from utils.user_data.generate_json import save_user_metadata
-from utils.query_without_database import chat_with_llm
-from utils.query_agents import crewai_agent_chat
+from utils.query_database.query_without_database import chat_with_llm
+from utils.query_database.query_agents import crewai_agent_chat
 from utils.chat_history.image_chat_history import save_uploaded_image
-from utils.query_image import chat_image
+from utils.query_database.query_image import chat_image
 from utils.languges.detect_language import detect_language
 from utils.languges.translate_langauge import translate_language
 
@@ -159,7 +159,6 @@ async def main():
     if user_info is not None:
         user_prompt, chat_mode, image_file = bottom_container()  # Get user input, chat mode, and image file
         if user_prompt is not None and user_prompt != '':
-            print("GOING IN")
             with st.container(border=True, height=500):
                 chat_history = await read_chat_history(limit=5)  # Read chat history asynchronously
                 format_history = await format_chat_history_llamaindex(chat_history)
@@ -172,9 +171,6 @@ async def main():
                 user_prompt_language = detect_language(user_prompt)
                 if user_prompt_language in ['de', 'fr']:
                     user_prompt = translate_language(user_prompt_language, user_prompt)
-                elif user_prompt_language != 'en':
-                    st.warning("Language cannot be detect")
-                    return
 
                 if language != 'Default':
                         user_prompt += '\n LANGUAGE: ' + language

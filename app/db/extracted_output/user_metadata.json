@@ -49,6 +49,12 @@
                 "property_type": "dsfsdf",
                 "budget_in_dollar": 0.0,
                 "preferred_location": "sdfsdf"
+            },
+            {
+                "name": "asdasd",
+                "property_type": "dfdfdf",
+                "budget_in_dollar": 20000.0,
+                "preferred_location": "sdfsdfsdf"
             }
         ]
     },
