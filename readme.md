@@ -79,3 +79,48 @@ GEMINI_API_KEY=A*********************************
 ```
 streamlit run app.py
 ```
+
+
+___________________________________________________________________________
+
+## How to use the project
+
+1. Once you run the streamlit app you will see a sidebae to select language and a expander to provide user information. Until you do not give the information you might not be able to chat.
+
+2. The information for Buyer, Seller, Tenant and Landlord is store at app/db/extracted_output/user_metadata.json where this information is stored for FAQ's.
+
+3. Once this is done you will see a bottom chat input to write input and a selection box to select option as Normal (for FAQ's and chatting ), Chat with Document (without using Agents) this option is a chatting option without using crewai agents, With Agent (which is slow as agents take time and many tokens), Finally chatting with image where you will upload a image and chat with it.
+
+4. You can select langauge from the dropdown in the sidebar or directly write any of the three languages it will autodetect the languages and respond to you in that languge. (French, German or English).
+
+
+___________________________________________________________________________
+
+## Project Details
+
+```
+you can change the following from utils/constants)
+1. LLM model : - GROQ llama-3.1-70b-versatile (you can change model from utils/constants)
+
+2. VLM model :  Gemini-1.5-flash
+
+3. Embedding model: - BAAI/bge-small-en
+
+4. Chunking: For Weblinks = langchain markdownsplitter, For pdfs = recursive text splitter with RecursiveCharacterTextSplitter with chunk size as 1500 and overlap 150
+
+(The text splitter and embeddings are generated from the following files in utils folder: - generate_embeddings.py, text_splitter.py and combined inside text_and_embeddings.py)
+
+5. Loaders: Pymupdf loader of pdfs and Crawl4ai from weblinks
+
+6. RAG Framework: llamaindex (can be found in utils/query_database)
+
+7. Chatbot history: Stored inside db/extracted_output in json files database.json and image_database.json For clearing history you might need to remove the content from the json so history will be deleted.
+
+8. Langauge detection and translation: - langdetect for detection languages and following models for french and german translations
+Helsinki-NLP/opus-mt-de-en
+Helsinki-NLP/opus-mt-fr-en
+
+https://huggingface.co/Helsinki-NLP/opus-mt-en-de
+
+9. Prompts: - The prompts have been written in utils/prompts, some of them may be redundant.
+```
