@@ -4,10 +4,10 @@
 The chatbot is integrated with normal conversation from FAQ's, chatting with documents without Crewai agents, chatting with documents with crewai agents, Chatting with image with autodetection and custom language selection from English, French and German.
 
 
+
 ### First git pull the following branch
 ```
-https://github.com/VedantR3907/Real_Estate_Chatbot/tree/main
-BRANCH : - Image-chatting-integration
+git clone https://github.com/VedantR3907/Real_Estate_Chatbot.git
 ````
 
 ### Installing requriements.txt
