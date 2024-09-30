@@ -6,7 +6,7 @@ groq
 pinecone
 google-generativeai
 llama-index
-llama-index-llms-
+llama-index-llms-groq
 llama_index-readers-web
 crawl4ai
 llama-index-vector-stores-pinecone
