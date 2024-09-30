@@ -99,7 +99,9 @@ ___________________________________________________________________________
 ## Project Details
 
 ```
-you can change the following from utils/constants)
+You can change the following from utils/constants)
+
+
 1. LLM model : - GROQ llama-3.1-70b-versatile (you can change model from utils/constants)
 
 2. VLM model :  Gemini-1.5-flash
