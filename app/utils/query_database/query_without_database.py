@@ -35,7 +35,7 @@ def chat_with_llm(user_info, user_prompt):
     elif user_type.lower() == "tenant":
         # Pass information for landlords
         context_json = next((entry for entry in user_metadata if entry["user_type"].lower() == "landlord_for_rent"), {})
-    elif user_type.lower() == "landlord_for_rent":
+    elif user_type.lower() == "landlord":
         # Pass information for tenants
         context_json = next((entry for entry in user_metadata if entry["user_type"].lower() == "tenant"), {})
     
