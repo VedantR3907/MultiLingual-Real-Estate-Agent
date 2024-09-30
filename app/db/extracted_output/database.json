@@ -1,2 +1,38 @@
 [
+    {
+        "user": "What is it villa or a flat",
+        "assistant": "The image shows a suburban home. It's likely a single-family home, not a flat. \n"
+    },
+    {
+        "user": "is there a balcony",
+        "assistant": "The image does not show a balcony."
+    },
+    {
+        "user": "What is the price of this accroding to you",
+        "assistant": "I'm sorry, I can't estimate the price of a house based on a photo. There are too many factors that go into determining the value of a property, including:\n\n* Location\n* Square footage\n* Number of bedrooms and bathrooms\n* Age of the house\n* Condition of the house\n* Lot size\n* Amenities\n* Market conditions \n\nTo get a realistic estimate of the price, you would need to contact a real estate agent in the area. \n"
+    },
+    {
+        "user": "I want a villa",
+        "assistant": "Based on your preferences, I found a villa for sale in Beverly Hills listed at $2,000,000. Would you like more details on this property?"
+    },
+    {
+        "user": "Flats in jaipur",
+        "assistant": "I found a 3 BHK apartment for sale in Bhankrota, Jaipur. It has 3 bathrooms, 3 balconies, and is 1800 sq ft. The price is \u20b9 57.60 Lac. Would you like more details on this property?"
+    },
+    {
+        "user": "Yes contact details",
+        "assistant": "The contact details for the 3 BHK apartment in Bhankrota, Jaipur are as follows: +91-86969xxxxx. You can visit their website at http://www.shriradheyhomes.com for more information."
+    },
+    {
+        "user": "Hi",
+        "assistant": "Please upload an image."
+    },
+    {
+        "user": "Hi",
+        "assistant": "Please upload an image."
+    },
+    {
+        "user": "Whats in the image",
+        "assistant": "This is a photo of a house with a blue door and a double garage door. The house is painted white and has a dark roof. There are two trees in front of the house and a field behind it. The house looks to be in a suburban neighborhood and is lit up by warm lights. The sky is a soft pink and blue color with wispy clouds."
+    }
 ]

@@ -1,0 +1,10 @@
+[
+    {
+        "role": "user",
+        "parts": "Whats in the image"
+    },
+    {
+        "role": "model",
+        "parts": "This is a photo of a house with a blue door and a double garage door. The house is painted white and has a dark roof. There are two trees in front of the house and a field behind it. The house looks to be in a suburban neighborhood and is lit up by warm lights. The sky is a soft pink and blue color with wispy clouds."
+    }
+]
