@@ -1,7 +1,7 @@
 
 # Real Estate Chatbot
 
-The chatbot is integrated with normal conversation from FAQ's, chatting with documents without Crewai agents, chatting with documents with crewai agents, Chatting with image with AutoDetection and custom language selection from English, French and German
+The chatbot is integrated with normal conversation from FAQ's, chatting with documents without Crewai agents, chatting with documents with crewai agents, Chatting with image with AutoDetection and custom language selection from English, French and German.
 
 
 
