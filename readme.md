@@ -4,7 +4,6 @@
 The chatbot is integrated with normal conversation from FAQ's, chatting with documents without Crewai agents, chatting with documents with crewai agents, Chatting with image with AutoDetection and custom language selection from English, French and German.
 
 
-
 ### First git pull the following branch
 ```
 git clone https://github.com/VedantR3907/Real_Estate_Chatbot.git
